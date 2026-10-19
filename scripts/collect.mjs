@@ -12,7 +12,7 @@ export function validate(items){
 export async function collect(){
  const file=new URL('../docs/data/history.json',import.meta.url);const history=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):[];
  const now=new Date(),date=kstDate(now),prior=history.find(s=>s.date===date);
- if(!process.argv.includes('--force')&&prior&&new Date(prior.capturedAt)>=new Date(date+'T07:00:00+09:00')){console.log('오늘 아침 수집 완료');return;}
+ if(!process.argv.includes('--force')&&prior&&new Date(prior.capturedAt)>=new Date(date+'T06:00:00+09:00')){console.log('오늘 아침 수집 완료');return;}
  let cursor=null,items=[],seen=new Set();
  do{
   const url=new URL('https://api.myteaz.io/chat/characters');if(cursor)url.searchParams.set('cursor',cursor);
