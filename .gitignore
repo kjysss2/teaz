@@ -1,0 +1,5 @@
+chunk*.txt
+inspect.cjs
+github.cjs
+api-sample.json
+node_modules/
