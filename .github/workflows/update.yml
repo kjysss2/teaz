@@ -1,13 +1,12 @@
 name: Collect and publish Teaz counter
 on:
   schedule:
+    - cron: '17 9,12,14 * * *'
     - cron: '0 15 * * *'
-    - cron: '17,37 15 * * *'
-    - cron: '7 16 * * *'
   workflow_dispatch:
     inputs:
       force:
-        description: '오늘 기록을 새로 수집하여 교체'
+        description: '현재 참고값 수집 (자정 기록을 덮어쓰지 않음)'
         type: boolean
         default: false
   push:
@@ -23,7 +22,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 355
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -37,6 +36,7 @@ jobs:
       - name: Test collector
         run: node --test tests/*.test.mjs
       - name: Collect public message counts
+        if: github.event_name != 'push'
         env:
           FORCE: ${{ inputs.force }}
         run: |

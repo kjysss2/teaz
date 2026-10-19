@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import {workCount} from '../docs/counts.mjs';
+import {onTime,isMidnight,nextTarget} from '../docs/timing.mjs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 export const kstDate=d=>new Date(+d+9*3600000).toISOString().slice(0,10);
@@ -10,9 +11,16 @@ export function validate(items){
  return items.map(x=>({id:x.id,name:x.name,count:x.message_count,work:x.source_work_title||'',platform:x.source_platform||'',url:'https://myteaz.io/ko/chat/c/'+encodeURIComponent(x.public_id||x.id)})).sort((a,b)=>b.count-a.count);
 }
 export async function collect(){
- const file=new URL('../docs/data/history.json',import.meta.url);const history=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):[];
- const now=new Date(),date=kstDate(now),prior=history.find(s=>s.date===date);
- if(!process.argv.includes('--force')&&prior&&new Date(prior.capturedAt)>=new Date(date+'T00:00:00+09:00')){console.log('오늘 자정 수집 완료');return;}
+ const file=new URL('../docs/data/history.json',import.meta.url);
+ const manual=process.argv.includes('--force');
+ if(!manual){
+  const target=nextTarget(new Date());
+  if(Date.now()<+target){console.log('자정까지 대기:',target.toISOString());while(Date.now()<+target)await new Promise(r=>setTimeout(r,Math.min(30000,+target-Date.now())));}
+  if(!onTime(new Date()))throw Error('자정 수집 창(00:00~00:01:59)을 놓쳤습니다. 늦은 값을 자정 기록으로 저장하지 않습니다.');
+ }
+ const history=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):[];
+ const now=new Date(),date=kstDate(now),prior=history.find(s=>s.date===date&&isMidnight(s));
+ if(!manual&&prior){console.log('오늘 자정 수집 완료');return;}
  let cursor=null,items=[],seen=new Set();
  do{
   const url=new URL('https://api.myteaz.io/chat/characters');if(cursor)url.searchParams.set('cursor',cursor);
@@ -24,9 +32,10 @@ export async function collect(){
  const characters=validate(items);
  const previous=history.filter(s=>s.date<date).at(-1);
  if(previous&&characters.length<previous.characters.length*.8)throw Error('작품 수가 20% 이상 감소: 부분 수집 여부를 확인하세요. 기존 기록 유지.');
- const snapshot={date,capturedAt:now.toISOString(),total:characters.reduce((n,x)=>n+x.count,0),characters};
+ if(!manual&&!onTime(new Date()))throw Error('수집 완료가 자정 허용 범위를 벗어나 저장하지 않습니다.');
+ const snapshot={date,capturedAt:now.toISOString(),completedAt:new Date().toISOString(),kind:manual?'reference':'midnight',targetAt:date+'T00:00:00+09:00',total:characters.reduce((n,x)=>n+x.count,0),characters};
  snapshot.characterCount=characters.length;snapshot.workCount=workCount(snapshot);
- const result=history.filter(s=>s.date!==date).concat(snapshot).sort((a,b)=>a.date.localeCompare(b.date));
+ const result=history.filter(s=>manual||s.date!==date||!isMidnight(s)).concat(snapshot).sort((a,b)=>a.capturedAt.localeCompare(b.capturedAt));
  const target=fileURLToPath(file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target+'.tmp',JSON.stringify(result,null,2)+'\n');fs.renameSync(target+'.tmp',target);
  console.log(date,characters.length+'개',snapshot.total+' 메시지',characters.find(x=>x.name==='강혜영'));
 }

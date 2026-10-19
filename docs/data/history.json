@@ -142,7 +142,10 @@
       }
     ],
     "characterCount": 17,
-    "workCount": 6
+    "workCount": 6,
+    "kind": "reference",
+    "targetAt": "2026-10-19T00:00:00+09:00",
+    "note": "기준 시각 외 수집: 자정 데이터로 사용하지 않음"
   },
   {
     "date": "2026-10-20",
@@ -287,6 +290,9 @@
       }
     ],
     "characterCount": 17,
-    "workCount": 6
+    "workCount": 6,
+    "kind": "reference",
+    "targetAt": "2026-10-20T00:00:00+09:00",
+    "note": "기준 시각 외 수집: 자정 데이터로 사용하지 않음"
   }
 ]
