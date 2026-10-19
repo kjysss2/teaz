@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {workCount} from '../docs/counts.mjs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 export const kstDate=d=>new Date(+d+9*3600000).toISOString().slice(0,10);
@@ -24,6 +25,7 @@ export async function collect(){
  const previous=history.filter(s=>s.date<date).at(-1);
  if(previous&&characters.length<previous.characters.length*.8)throw Error('작품 수가 20% 이상 감소: 부분 수집 여부를 확인하세요. 기존 기록 유지.');
  const snapshot={date,capturedAt:now.toISOString(),total:characters.reduce((n,x)=>n+x.count,0),characters};
+ snapshot.characterCount=characters.length;snapshot.workCount=workCount(snapshot);
  const result=history.filter(s=>s.date!==date).concat(snapshot).sort((a,b)=>a.date.localeCompare(b.date));
  const target=fileURLToPath(file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target+'.tmp',JSON.stringify(result,null,2)+'\n');fs.renameSync(target+'.tmp',target);
  console.log(date,characters.length+'개',snapshot.total+' 메시지',characters.find(x=>x.name==='강혜영'));

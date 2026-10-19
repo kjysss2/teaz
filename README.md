@@ -20,3 +20,4 @@ Actions → Collect and publish Teaz counter → Run workflow. 수집과 배포 
 ## 로컬
 
 Node.js 22 이상, 외부 패키지 불필요. `node scripts/collect.mjs` 또는 `node scripts/collect.mjs --force`. 검증: `node --test tests/*.test.mjs`.
+`n원작 수는 원작명의 한글 정규화·앞뒤/연속 공백 정리 후 중복을 제거하여 집계하며, 원작명이 없는 항목은 제외합니다. 요약·그래프·일별 기록·CSV에 표시하며 매일 같은 수집 기록에서 계산합니다.
