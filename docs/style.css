@@ -5,3 +5,5 @@
 .workkey{color:#ffbd86}.stats{grid-template-columns:repeat(4,1fr)}@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.stats{grid-template-columns:1fr}}
 
 .derived-chart{margin-top:4px}.derived-note{color:var(--muted)}.derived-bar{opacity:.78}.derived-official{fill:#b8ef78}.derived-reference{fill:#ffbd86}.reference{color:#ffbd86}.derived-tablewrap{margin-top:14px}#derived-panel .chartnote{margin:14px 0 0}
+
+.recordkey{color:#ffbd86}
