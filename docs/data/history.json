@@ -1034,5 +1034,153 @@
     ],
     "characterCount": 17,
     "workCount": 6
+  },
+  {
+    "date": "2026-10-26",
+    "capturedAt": "2026-10-25T15:00:00.005Z",
+    "completedAt": "2026-10-25T15:00:00.564Z",
+    "kind": "midnight",
+    "targetAt": "2026-10-26T00:00:00+09:00",
+    "total": 46431,
+    "characters": [
+      {
+        "id": "019f7e5a-2986-7fcf-88ca-2b4c2dd4520e",
+        "name": "차태경",
+        "count": 10534,
+        "work": "뿌리 없는 나무",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/f73Kxezd"
+      },
+      {
+        "id": "019f7e5a-12d7-76f5-b5fe-d54dfc7d9385",
+        "name": "권희서",
+        "count": 9372,
+        "work": "뿌리 없는 나무",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/Hdi12YSr"
+      },
+      {
+        "id": "019f3a59-eb10-75a6-ac11-e68f0fc4b632",
+        "name": "구윤원",
+        "count": 9224,
+        "work": "월요일의 구원자",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/cQbSeFBh"
+      },
+      {
+        "id": "019f58f5-aff6-73c9-86d6-6ad9e4da6c28",
+        "name": "애런 헌터",
+        "count": 4127,
+        "work": "FlashLight (플래시라이트)",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/SUsz1bzO"
+      },
+      {
+        "id": "019f5e31-0ffa-744a-a31a-51e3d99ce14e",
+        "name": "강혜영",
+        "count": 2398,
+        "work": "손만 잡아",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/ruhjbzbw"
+      },
+      {
+        "id": "019f5e31-00ef-71e1-bb0e-eab7da95c382",
+        "name": "차은주",
+        "count": 2064,
+        "work": "손만 잡아",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/P9k4bbpt"
+      },
+      {
+        "id": "019f3a59-eb12-7495-af10-7190e0259784",
+        "name": "원요일",
+        "count": 1836,
+        "work": "월요일의 구원자",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/6ucsAyz0"
+      },
+      {
+        "id": "019f7ffe-0033-7c0d-b2c1-25083fd8fdb2",
+        "name": "이효",
+        "count": 1634,
+        "work": "바라메 강림하여 주소서",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/gVripdfI"
+      },
+      {
+        "id": "019f58f5-cda4-748b-9f2e-c2240f9921ac",
+        "name": "유진 하트",
+        "count": 1621,
+        "work": "FlashLight (플래시라이트)",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/jwUWiEgG"
+      },
+      {
+        "id": "01a03e4b-897f-7f33-87d3-c8ccae1f34da",
+        "name": "한제원",
+        "count": 1313,
+        "work": "뿌리 없는 나무",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/A1Er1bF5"
+      },
+      {
+        "id": "019f701a-bd36-74e5-ba00-1ab48e0271e9",
+        "name": "엘로이즈",
+        "count": 774,
+        "work": "대리 신부",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/quEDtE9C"
+      },
+      {
+        "id": "019f7ffe-0034-7654-85ef-f04a4863cb5e",
+        "name": "서도람",
+        "count": 651,
+        "work": "바라메 강림하여 주소서",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/Ad3qEc37"
+      },
+      {
+        "id": "019f5e31-089a-7d45-ad37-e5d48efcec4f",
+        "name": "백수호",
+        "count": 429,
+        "work": "손만 잡아",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/DNw3HQ2N"
+      },
+      {
+        "id": "019f6ff0-7002-720e-a9b5-cdae27ae46b0",
+        "name": "트리스탄 공작",
+        "count": 167,
+        "work": "대리 신부",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/k9tByXEA"
+      },
+      {
+        "id": "019f824a-8505-71ee-81a7-12a3104af60e",
+        "name": "알렌",
+        "count": 114,
+        "work": "대리 신부",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/KNRuexL0"
+      },
+      {
+        "id": "019f5e30-f105-7d99-9472-1f4f72af337d",
+        "name": "도준",
+        "count": 100,
+        "work": "손만 잡아",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/W838fo81"
+      },
+      {
+        "id": "019f7d7f-e285-7cb7-afa7-0f2c54c9c1b7",
+        "name": "리처드 3세",
+        "count": 73,
+        "work": "대리 신부",
+        "platform": "lezhin",
+        "url": "https://myteaz.io/ko/chat/c/isepozK0"
+      }
+    ],
+    "characterCount": 17,
+    "workCount": 6
   }
 ]
