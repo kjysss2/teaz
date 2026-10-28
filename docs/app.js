@@ -1,4 +1,4 @@
-import {isMidnight,isMissing,isObservation} from './timing.mjs';
+import {isMidnight,isMissing,isObservation} from './timing.mjs?v=2';
 import {workCount,workTitles} from './counts.mjs';
 const $=id=>document.getElementById(id),fmt=n=>n.toLocaleString('ko-KR'),diff=n=>n==null?'—':(n>0?'+':'')+fmt(n),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let records=[],data=[],sort='count',descending=true;
