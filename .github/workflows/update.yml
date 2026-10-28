@@ -1,7 +1,7 @@
 name: Collect and publish Teaz counter
 on:
   schedule:
-    - cron: '17 9,12,14 * * *'
+    - cron: '17 12,14 * * *'
     - cron: '0 15 * * *'
   workflow_dispatch:
     inputs:
