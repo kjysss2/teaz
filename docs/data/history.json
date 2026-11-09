@@ -1185,10 +1185,22 @@
   },
   {
     "date": "2026-10-27",
-    "kind": "missing",
+    "kind": "estimate",
     "targetAt": "2026-10-27T00:00:00+09:00",
+    "total": 51821,
+    "characterCount": 17,
+    "workCount": 6,
     "reason": "scheduled-run-delayed-before-capture",
-    "note": "자정 예약 실행이 01:09 KST에 시작되어 API 요청 전에 종료됨. 당시 원본 스냅샷과 웹 아카이브가 없어 현재 값으로 소급 생성하지 않음.",
+    "note": "10월 26일~28일 누적 증가분 10,779를 이틀로 균등 분할하고 반올림한 보정 추정값. 실제 수집값이 아님.",
+    "estimate": {
+      "method": "split-interval-increase-equally",
+      "fromDate": "2026-10-26",
+      "fromTotal": 46431,
+      "toDate": "2026-10-28",
+      "toTotal": 57210,
+      "intervalIncrease": 10779,
+      "rounding": "half-up"
+    },
     "evidence": {
       "workflowRun": "https://github.com/kjysss2/teaz/actions/runs/40356291037",
       "startedAt": "2026-10-26T16:09:00Z"
