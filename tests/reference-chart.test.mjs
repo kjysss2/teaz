@@ -31,4 +31,22 @@ test('10월 27일 추정값이 표와 일별 그래프의 증가분을 절반으
  assert(!els.chart.innerHTML.includes('NaN'));assert(!els.history.innerHTML.includes('Invalid Date'));
 });
 
-test('변경된 모듈과 화면 자산은 캐시 키가 함께 갱신된다',()=>{const app=fs.readFileSync(new URL('../docs/app.js',import.meta.url),'utf8'),html=fs.readFileSync(new URL('../docs/index.html',import.meta.url),'utf8');assert.match(app,/timing\.mjs\?v=3/);assert.match(html,/app\.js\?v=17/);assert.match(html,/style\.css\?v=7/);});
+test('주별·월별 그래프는 지연 참고 기록의 최신 실제 관측을 자동 반영하고 추정값은 제외한다',()=>{
+ const {els,context}=screen();
+ vm.runInContext(`records=[
+  {date:'2026-10-31',capturedAt:'2026-10-31T02:00:00Z',kind:'reference',total:1000,characters:[]},
+  {date:'2026-11-08',capturedAt:'2026-11-08T03:00:00Z',kind:'reference',total:1800,characters:[]},
+  {date:'2026-11-09',targetAt:'2026-11-09T00:00:00+09:00',kind:'estimate',total:9999,characterCount:0,workCount:0},
+  {date:'2026-11-10',capturedAt:'2026-11-10T04:00:00Z',kind:'reference',total:2200,characters:[]}
+ ];data=records.filter(isObservation);series=records.filter(isDisplayPoint);`,context);
+ vm.runInContext(`$('period').value='week';chart()`,context);
+ assert(els.chart.innerHTML.includes('2026-11-09 메시지 누적: 2,200, 전주 대비 +400'));
+ assert(els.chart.innerHTML.includes('주·월 그래프는 추정값을 제외'));
+ assert(!els.chart.innerHTML.includes('9,999'));
+ vm.runInContext(`$('period').value='month';chart()`,context);
+ assert(els.chart.innerHTML.includes('2026-11 메시지 누적: 2,200, 전월 대비 +1,200'));
+ assert(els.chart.innerHTML.includes('>참고<'));
+ assert(!els.chart.innerHTML.includes('9,999'));
+});
+
+test('변경된 모듈과 화면 자산은 캐시 키가 함께 갱신된다',()=>{const app=fs.readFileSync(new URL('../docs/app.js',import.meta.url),'utf8'),html=fs.readFileSync(new URL('../docs/index.html',import.meta.url),'utf8');assert.match(app,/timing\.mjs\?v=3/);assert.match(html,/app\.js\?v=18/);assert.match(html,/style\.css\?v=7/);});
