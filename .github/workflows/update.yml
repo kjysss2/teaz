@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 355
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment_retry.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,4 +56,12 @@ jobs:
           path: docs
       - name: Publish GitHub Pages
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Wait before retrying GitHub Pages publish
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 10
+      - name: Retry GitHub Pages publish
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
